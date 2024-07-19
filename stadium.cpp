@@ -72,7 +72,7 @@ void parseCSV(string line, string elements[]) {
 	}
 }
 
-int* createMatrix(int *&arr, int &n, string str)
+int* createMatrix(int &n, string str)
 {
     vector<int> numbers;
     stringstream ss(str);
@@ -84,7 +84,7 @@ int* createMatrix(int *&arr, int &n, string str)
     }
 
     n = numbers.size();
-    arr = new int[n];
+    int* arr = new int[n];
     for (int i = 0; i < n; ++i)
     {
         arr[i] = numbers[i];
@@ -92,6 +92,29 @@ int* createMatrix(int *&arr, int &n, string str)
 
     return arr;
 }
+
+//STADIUM readLine(string line) {
+//	STADIUM stadium;
+//	string elements[7];
+//	parseCSV(line, elements);
+//	string tmp;
+//
+//	stadium.name = elements[0];
+//	string capacity = elements[1];
+//	stadium.capacity = myStoi(capacity);
+//	stadium.city = elements[2];
+//	stadium.clubs = elements[3];
+//	
+//	tmp = elements[4];
+//	stadium.* = createMatrix(int &staduum. , tmp);
+//	
+//	tmp = elements[5];
+//	parseString(tmp, stadium., stadium.,stadium.);
+//	
+//	stadium.address = elements[6];
+//
+//	return stadium;
+//}
 
 STADIUM readLine(string line) {
 	STADIUM stadium;
@@ -143,6 +166,24 @@ void printStadium(vector<STADIUM> stadiums) {
 		     << "------------------------" << "\n";
 	}
 }
+
+//void printStadium(vector<STADIUM> stadiums) {
+//	for (int i = 0; i < stadiums.size(); ++i) {
+//		cout << i + 1 << " Name: " << stadiums[i].name << "\n"
+//		     << "Capacity: " << stadiums[i].capacity << "\n"
+//		     << "City: " << stadiums[i].city << "\n"
+//		     << "Clubs: " << stadiums[i].clubs << "\n"
+//		     
+//		for(int j = 0; j < stadiums[i].; i++)
+//		{
+//			cout << stadiums[i].reno[j] << " ";
+//		}
+//		     << "Record Attendance: " << stadiums[i].record_attendance << "\n"
+//		     
+//		cout << "Address: " << stadiums[i].address << "\n"
+//		     << "------------------------" << "\n";
+//	}
+//}
 
 void printBT(const string& prefix, const Node* node, bool isLeft)
 {
