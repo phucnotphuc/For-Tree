@@ -3,6 +3,7 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -24,11 +25,32 @@ struct Node
 };
 
 int myStoi(string str) {
-	string tmp = "";
+	int res = 0;
 	for(int i = 0; i < str.size(); i++) {
-		if(str[i] != ' ') tmp += str[i];
+		if(str[i] >= '0' && str[i] <= '9') res = res * 10 + str[i] - '0';
 	}
-	return atoi(tmp.c_str());
+	return res;
+}
+
+void parseString(const string& input, int &attendance, int &year, string &record)
+{
+    // Find the position of the first comma
+    size_t firstComma = input.find('(');
+    // Extract the attendance part
+    string attendanceStr = input.substr(0, firstComma);
+    
+    size_t commaAfterParen = input.find(',', firstComma);
+    // Extract the substring between '(' and ','
+    record = input.substr(firstComma + 1, commaAfterParen - firstComma - 1);
+    
+    // Find the position of the last space before the year
+    size_t lastSpace = input.rfind(' ');
+    // Extract the year part
+    string yearStr = input.substr(lastSpace + 1, 4);
+
+    // Convert strings to integers
+    attendance = myStoi(attendanceStr);
+    year = myStoi(yearStr);
 }
 
 void parseCSV(string line, string elements[]) {
@@ -48,6 +70,27 @@ void parseCSV(string line, string elements[]) {
 			str.clear();
 		} else str += ch;
 	}
+}
+
+int* createMatrix(int *&arr, int &n, string str)
+{
+    vector<int> numbers;
+    stringstream ss(str);
+    string temp;
+
+    while (getline(ss, temp, ','))
+    {
+        numbers.push_back(myStoi(temp));
+    }
+
+    n = numbers.size();
+    arr = new int[n];
+    for (int i = 0; i < n; ++i)
+    {
+        arr[i] = numbers[i];
+    }
+
+    return arr;
 }
 
 STADIUM readLine(string line) {
